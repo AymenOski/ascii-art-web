@@ -13,6 +13,7 @@ body{
     padding: 30px;
     border-radius: 10px;
     width: 600px;
+    margin-right: 15px;
 }
 h1 {
     color: #411402;
@@ -53,6 +54,9 @@ h1 {
     border: 1px rgb(0, 0, 0) solid;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
 }
+button[name="download"] {
+    padding: 4px 20px;
+}
 
 .btn:hover {
     color: #143a2e;
@@ -62,33 +66,27 @@ h1 {
     scale: 1.1;
     text-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
-#btn1{
-    width: 160px;
 
-}
-
-#downlaod{
-    border: #411402;
-    background-color: #168bda;
-    color: red;
-}
 @media (max-width: 700px) {
     .container {
         width: 400px;
-    }
-    h1 {
-        font-size: 33px;
+        margin-right: 15px;
     }
 }
 @media (max-width: 470px) {
     .container {
-        width: 280px;
+        width: 300px;
+        margin-right: 17px;
     }
-    h1 {
-        font-size: 25px;
+}
+@media (max-width: 321px) {
+    .container {
+        width: 270px;
+        margin-left:10px;
     }
-    .btn {
-        width: 100px;
-        height: 30px;
+    .ascii-output:hover{
+        border: 1px white solid;
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+        scale: 1.05;
     }
 }

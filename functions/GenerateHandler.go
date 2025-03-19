@@ -7,7 +7,7 @@ import (
 
 func GenerateHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodPost {
-		RenderError(w, http.StatusMethodNotAllowed)
+		RenderErrPage(w, http.StatusMethodNotAllowed)
 		return
 	}
 
@@ -16,19 +16,19 @@ func GenerateHandler(w http.ResponseWriter, r *http.Request) {
 	shouldDownload := r.FormValue("download")
 
 	if banner == "" || userText == "" {
-		RenderError(w, http.StatusBadRequest)
+		RenderErrPage(w, http.StatusBadRequest)
 		return
 	}
 
 	if len(userText) > 3000 {
-		RenderError(w, http.StatusBadRequest)
+		RenderErrPage(w, http.StatusBadRequest)
 		return
 	}
 
 	asciiArt, success := GeneratingTheAsciiArt(w, banner, userText)
 
 	if !success {
-		RenderError(w, http.StatusBadRequest)
+		RenderErrPage(w, http.StatusBadRequest)
 		return
 	}
 
@@ -37,15 +37,19 @@ func GenerateHandler(w http.ResponseWriter, r *http.Request) {
 		Result string
 		Banner string
 	}
-
 	if shouldDownload != "true" {
-		Exec("result.html", w, result{userText, asciiArt, banner})
+		if Exec("result.html", w, result{userText, asciiArt, banner}) != nil {
+			RenderErrPage(w, http.StatusInternalServerError)
+			return
+		}
 		return
 	}
-
+	// this sets the Content-Type header to text/plain
 	w.Header().Set("Content-Type", "text/plain")
+	// this tells the browser to download the file.
 	w.Header().Set("Content-Disposition", "attachment")
+	// this sets the Content-Length header
 	w.Header().Set("Content-Length", strconv.Itoa(len(asciiArt)))
-
+	// Write the response body
 	w.Write([]byte(asciiArt))
 }

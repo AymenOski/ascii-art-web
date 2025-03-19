@@ -6,7 +6,7 @@ import (
 	"net/http"
 )
 
-func RenderError(w http.ResponseWriter, Status int) {
+func RenderErrPage(w http.ResponseWriter, Status int) {
 	tmpl, err := template.ParseFiles("templates/page-not-found.html")
 	if err != nil {
 		http.Error(w, "Could not load template", Status)

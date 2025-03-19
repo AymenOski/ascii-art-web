@@ -6,16 +6,16 @@ import (
 
 func MainPage(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodGet {
-		RenderError(w, http.StatusMethodNotAllowed)
+		RenderErrPage(w, http.StatusMethodNotAllowed)
 		return
 	}
 	if r.URL.Path != "/" {
-		RenderError(w, http.StatusNotFound)
+		RenderErrPage(w, http.StatusNotFound)
 		return
 	}
 
 	if Exec("index.html", w, nil) != nil {
-		RenderError(w, http.StatusInternalServerError)
+		RenderErrPage(w, http.StatusInternalServerError)
 		return
 	}
 }

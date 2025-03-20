@@ -1,3 +1,5 @@
+# run BuildAndCleanup to build the project and clean up the your 
+
 FROM golang:alpine AS builder
 
 WORKDIR /src
@@ -8,9 +10,7 @@ RUN apk add  bash
 
 RUN go build -o main . 
 
-LABEL maintainer="Aymen <aymen@example.com>"
-LABEL maintainer="abderahman <abderahman@example.com>"
-LABEL maintainer="mohamed <mohamed@example.com>"
+LABEL maintainer="Aymen <aymen@example.com>, Abderahman <abderahman@example.com>, Mohamed <mohamed@example.com>"
 LABEL version="2.0"
 LABEL description="Adding multi-staging support for better performance"
 

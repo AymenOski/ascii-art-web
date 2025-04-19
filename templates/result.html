@@ -10,8 +10,8 @@
     <div class="container">
       <div class="buttons">
         <form action="/ascii-art" method="post">
-          <input name="banner"  value="{{.Banner}}" hidden></input>
-          <input name="text"  value="{{.Text}}" hidden></input>
+          <input type="hidden" name="banner"  value="{{.Banner}}" ></input>
+          <input type="hidden" name="text"  value="{{.Text}}" ></input>
           <button name="download" value="true" class="btn" type="submit">⬇ Download the file</button>
         </form>
       </div>

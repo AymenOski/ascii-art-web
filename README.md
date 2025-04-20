@@ -6,6 +6,36 @@ The **Ascii-Art Web** project is a web-based GUI for creating ASCII art banners 
 ## Authors
 - [Aymen Azizi , Github.com/AymenOski]
 
+## Project Structure
+```
+├── BuildAndCleanup.sh
+├── Dockerfile
+├── README.md
+├── functions
+    ├── GenerateHandler.go
+    ├── GeneratingTheAsciiArt.go
+    ├── MainPage.go
+    ├── Mapping.go
+    ├── Printing.go
+    ├── RenderErrPage.go
+    ├── StyleHandler.go
+    └── Templates.go
+├── go.mod
+├── main.go
+├── shadow.txt
+├── standard.txt
+├── static
+    ├── background.jpg
+    ├── index-back-ground.jpg
+    ├── page-not-found.css
+    ├── styles-result.css
+    └── styles.css
+├── templates
+    ├── index.html
+    ├── page-not-found.html
+    └── result.html
+└── thinkertoy.txt
+```
 ## Usage
 
 To run this project locally, follow these steps:
@@ -41,7 +71,7 @@ To run this project locally, follow these steps:
   - `404 Not Found` if banner is not found.
   - `500 Internal Server Error` for unhandled errors.
 
-## Implementation Details: Algorithm
+## Implementation Details:
 1. **Main Page Handler (`GET /`):**
    - Serves an HTML page using Go templates.
    - Contains a form with:
@@ -64,4 +94,15 @@ To run this project locally, follow these steps:
    - `index.html`: Main page with form.
    - `result.html`: Displays ASCII art results.
 
+## ⚙️ Export Feature (ascii-art-web-export)
+
+The project supports exporting the ASCII result directly as a **.txt** file.  
+This is handled via the same HTML form by selecting the "Download"
+- **Export Method**: Form-based
+- **MIME Headers Used**:
+  - `Content-Type`: `text/plain`
+  - `Content-Length`: Size of the file
+  - `Content-Disposition`: `attachment; filename="ascii-art.txt"`
+
+> Exported files include read & write permissions for the user.
 ---
